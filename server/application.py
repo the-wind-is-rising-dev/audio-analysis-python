@@ -23,6 +23,8 @@ class FlaskApp(Flask):
         self.blueprints_to_register = []
         from controller.test_controller import test_bp
         self.add_blueprint(bp=test_bp)
+        from controller.numpy_controller import numpy_bp
+        self.add_blueprint(bp=numpy_bp)
 
         # 添加请求前和响应后处理逻辑
         self.before_request(self.log_request_info)
