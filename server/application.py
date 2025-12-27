@@ -25,6 +25,8 @@ class FlaskApp(Flask):
         self.add_blueprint(bp=test_bp)
         from controller.numpy_controller import numpy_bp
         self.add_blueprint(bp=numpy_bp)
+        from controller.feature_extraction_controller import feature_extraction_bp
+        self.add_blueprint(bp=feature_extraction_bp)
 
         # 添加请求前和响应后处理逻辑
         self.before_request(self.log_request_info)
@@ -62,7 +64,10 @@ class FlaskApp(Flask):
         duration = datetime.now() - self.request_duration_local.start_time
         path_log = f'{"=" * 40} 响应信息: {request.path} {"=" * 40}'
         if response.is_json:
-            resp_result = json.dumps(response.get_json(), ensure_ascii=False)
+            resp_body = response.get_json()
+            resp_result = json.dumps(resp_body, ensure_ascii=False)
+            if 'success' in resp_body and resp_body['success'] == 'fail':
+                response.status_code = 500
         else:
             resp_result = response.data
         if len(resp_result) > 1024:
