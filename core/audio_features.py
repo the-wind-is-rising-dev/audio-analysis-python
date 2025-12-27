@@ -13,7 +13,7 @@ class AudioFeatureExtractor:
     """音频特征提取类"""
 
     def __init__(self, audio_path: str,
-                 sr: Optional[int] = None,
+                 sr: float = None,
                  n_fft: int = 2048,
                  hop_length: int = 512,
                  n_mfcc: int = 20,
@@ -30,7 +30,7 @@ class AudioFeatureExtractor:
         ----------
         audio_path : str
             音频文件路径
-        sr : int
+        sr : float
             目标采样率，None表示使用原始采样率 (默认: None)
             - 高音质音乐保持44.1kHz
             - 语音内容降采样到16kHz
