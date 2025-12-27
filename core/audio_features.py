@@ -280,7 +280,7 @@ class AudioFeatureExtractor:
 
 if __name__ == '__main__':
     print("\n" + '=' * 120)
-    audio_file = "../小村庄月弯弯-晚月moon.mp3"
+    audio_file = "../测试数据/小村庄月弯弯-晚月moon.mp3"
     # 创建特征提取器
     extractor = AudioFeatureExtractor(audio_file)
     # 提取特征
@@ -291,7 +291,7 @@ if __name__ == '__main__':
           f'后 3 维: {json.dumps(features[-3:], cls=CustomEncoder)}')
 
     print("\n" + '=' * 120)
-    audio_file = "../情火-洋澜一.m4a"
+    audio_file = "../测试数据/情火-洋澜一.m4a"
     extractor = AudioFeatureExtractor(audio_file)
     features = extractor.extract_all_features()
     print(f'{audio_file} 特征向量形状: {features.shape}')
